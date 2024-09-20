@@ -1,0 +1,26 @@
+input: 1,2,3,4,5
+output: 1,2,2,3,3,3,4,4,4,4,5,5,5,5,5
+
+create table numbers
+(num int);
+
+insert into practice1.numbers
+(num)
+values
+(1),(2),(3),(4),(5),(9);
+
+QUERY:
+with recursive cte as (
+select num,num as repeat_Count from numbers
+union all
+select num,repeat_count-1
+from cte 
+where repeat_count > 1
+)
+select num from cte
+order by num;
+
+select n1.num from numbers as n1
+join numbers as n2
+on n2.num <= n1.num
+order by num;
