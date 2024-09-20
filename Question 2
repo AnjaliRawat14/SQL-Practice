@@ -1,0 +1,93 @@
+CREATE TABLE date_functions_demo (
+    id INT ,
+    start_date DATE,
+    end_date DATE,
+    created_at TIMESTAMP,
+    updated_at TIMESTAMP,
+ system_date varchar(10)
+);
+
+INSERT INTO date_functions_demo (id,start_date, end_date, created_at, updated_at,system_date) VALUES 
+(1,'2024-01-01', '2024-12-31', '2024-01-01 10:00:00', '2024-12-31 23:59:59','12/30/2024'),
+(2,'2023-06-15', '2024-06-15', '2023-06-15 08:30:00', '2024-06-15 17:45:00','08/15/2024'),
+(3,'2022-05-20', '2023-05-20', '2022-05-20 12:15:00', '2023-05-20 18:00:00','10/21/2024');
+
+
+SELECT * FROM date_functions_demo;
+
+#1. NOW()
+
+SELECT NOW() FROM date_functions_demo;
+
+#2. CURRENT TIMESTAMP
+
+SELECT current_timestamp() FROM date_functions_demo;
+
+#3. CURRENT DATE
+
+SELECT CURRENT_DATE() FROM date_functions_demo;
+
+#4. CURRENT TIME
+select current_time() from date_functions_demo;
+
+#5. DATE
+SELECT DATE(created_at) as datee FROM date_functions_demo;
+
+#6. CASTE
+select cast(created_at as date) as datee from date_functions_demo;
+
+#7. DATE FORMAT
+select date_format(start_date,"%m-%d-%y") from date_functions_demo;
+
+#8. DATE DIFF
+select * from date_functions_demo;
+SELECT DATEDIFF(updated_at,created_at) as news from date_functions_demo;
+
+#9. DATE ADD
+SELECT DATE_ADD(start_date,interval 28 day) as dayy from date_functions_demo;
+
+#10. DATE SUB
+
+SELECT DATE_SUB(start_date,interval 1 month) as monthh from date_functions_demo;
+
+#11. DAY
+SELECT DAY(start_date) as dayy from date_functions_demo;
+
+#12. MONTH
+SELECT MONTH(start_date) as monthh from date_functions_demo;
+
+#13. YEAR
+select year(start_date) as yearr from date_functions_demo;
+
+#14. DAYOFWEEK
+select start_date,dayofweek(start_date) as dow from date_functions_demo;
+
+#15. MONTHOFWEEK
+select start_date,dayofmonth(start_date) as dow from date_functions_demo;
+
+#16. DAYOFYEAR
+select start_date,dayofyear(start_date) as dow from date_functions_demo;
+
+#16. DAYNAME
+select start_date,DAYNAME(start_date) as dow from date_functions_demo;
+
+#17. MONTHNAME
+select start_date,MONTHNAME(start_date) as dow from date_functions_demo;
+
+#18. STR TO DATE
+select system_date from date_functions_demo;
+select system_date,str_to_date(system_date,'%m/%d/%Y') AS system_datee from date_functions_demo;
+
+#19. last day
+SELECT last_day(start_date) as last_date from date_functions_demo;
+
+#20. TIMESTAMPDIFF
+select created_at,updated_at, timestampdiff(day,created_at,updated_at) as dayy from date_functions_demo;
+select created_at,updated_at, timestampdiff(month,created_at,updated_at) as dayy from date_functions_demo;
+select created_at,updated_at, timestampdiff(HOUR,created_at,updated_at) as dayy from date_functions_demo;
+
+#21. EXTRACT
+SELECT EXTRACT(DAY FROM created_at) AS DAYY FROM date_functions_demo;
+SELECT EXTRACT(MONTH FROM created_at) AS DAYY FROM date_functions_demo;
+SELECT EXTRACT(HOUR FROM created_at) AS DAYY FROM date_functions_demo;
+SELECT EXTRACT(MINUTE FROM created_at) AS DAYY FROM date_functions_demo;
